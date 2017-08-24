@@ -2,4 +2,9 @@
 <resources>
     <item name="tv_message" type="id"/>
     <item name="rv_forecast_list" type="id"/>
+    <item name="iv_icon" type="id"/>
+    <item name="tv_description" type="id"/>
+    <item name="tv_date" type="id"/>
+    <item name="tv_max_temperature" type="id"/>
+    <item name="tv_min_temperature" type="id"/>
 </resources>
