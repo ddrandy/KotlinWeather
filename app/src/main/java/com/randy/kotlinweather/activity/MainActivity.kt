@@ -1,9 +1,15 @@
-package com.randy.kotlinweather
+package com.randy.kotlinweather.activity
 
-import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
+import com.randy.kotlinweather.R
+import com.randy.kotlinweather.network.ForecastRequest
+import com.randy.kotlinweather.adapter.ForecastListAdapter
+import org.jetbrains.anko.doAsync
+import org.jetbrains.anko.find
+import org.jetbrains.anko.longToast
 
 class MainActivity : AppCompatActivity() {
     private val items = listOf(
@@ -16,15 +22,25 @@ class MainActivity : AppCompatActivity() {
             "Sun 6/29 - Sunny - 31/17"
     )
 
+    private val forecastList: RecyclerView get() = find(R.id.rv_forecast_list)
+//    private val forecastList get() = findViewById<RecyclerView>(R.id.rv_forecast_list)
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         initView()
+        initData()
     }
 
     private fun initView() {
-        val forecastList = findViewById<RecyclerView>(R.id.rv_forecast_list)
         forecastList.layoutManager = LinearLayoutManager(this)
+    }
+
+    private fun initData() {
         forecastList.adapter = ForecastListAdapter(items)
+        doAsync {
+            val execute = ForecastRequest("518000").execute()
+            runOnUiThread { longToast("$execute") }
+        }
     }
 }

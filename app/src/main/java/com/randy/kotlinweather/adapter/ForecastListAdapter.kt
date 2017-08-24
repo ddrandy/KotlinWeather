@@ -1,4 +1,4 @@
-package com.randy.kotlinweather
+package com.randy.kotlinweather.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.ViewGroup
