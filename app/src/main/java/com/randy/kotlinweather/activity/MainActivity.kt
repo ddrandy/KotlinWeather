@@ -5,11 +5,11 @@ import android.support.v7.app.AppCompatActivity
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.randy.kotlinweather.R
-import com.randy.kotlinweather.network.ForecastRequest
 import com.randy.kotlinweather.adapter.ForecastListAdapter
+import com.randy.kotlinweather.domain.RequestForecastCommand
 import org.jetbrains.anko.doAsync
 import org.jetbrains.anko.find
-import org.jetbrains.anko.longToast
+import org.jetbrains.anko.uiThread
 
 class MainActivity : AppCompatActivity() {
     private val items = listOf(
@@ -37,10 +37,10 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initData() {
-        forecastList.adapter = ForecastListAdapter(items)
+//        forecastList.adapter = ForecastListAdapter(items)
         doAsync {
-            val execute = ForecastRequest("518000").execute()
-            runOnUiThread { longToast("$execute") }
+            val result = RequestForecastCommand("518000").execute()
+            uiThread { forecastList.adapter = ForecastListAdapter(result) }
         }
     }
 }

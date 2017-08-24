@@ -21,6 +21,7 @@ class ForecastRequest(private val zipCode: String) {
 
     fun execute(): ForecastResult {
         val forecastJsonStr = URL(COMPLETE_URL + zipCode).readText()
+        Timber.d("result:$forecastJsonStr")
         return Gson().fromJson(forecastJsonStr, ForecastResult::class.java)
     }
 }
