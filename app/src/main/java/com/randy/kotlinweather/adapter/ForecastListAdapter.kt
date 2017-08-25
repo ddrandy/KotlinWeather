@@ -14,12 +14,12 @@ import com.randy.kotlinweather.domain.ForecastList
  * Description: TODO
  */
 class ForecastListAdapter(private val weekForecast: ForecastList,
-                          private val clickListener: OnItemClickListener) :
+                          private val itemClick: (Forecast) -> Unit) :
         RecyclerView.Adapter<ListViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val view = LayoutInflater.from(parent.context)
                 .inflate(R.layout.item_forecast, parent, false)
-        return ListViewHolder(view, clickListener)
+        return ListViewHolder(view, itemClick)
     }
 
     override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
@@ -27,9 +27,5 @@ class ForecastListAdapter(private val weekForecast: ForecastList,
     }
 
     override fun getItemCount(): Int = weekForecast.size()
-
-    interface OnItemClickListener {
-        operator fun invoke(forecast: Forecast)
-    }
 
 }

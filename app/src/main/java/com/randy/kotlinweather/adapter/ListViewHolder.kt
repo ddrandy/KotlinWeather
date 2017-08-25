@@ -15,7 +15,7 @@ import org.jetbrains.anko.find
  * Time: 5:11 PM
  * Description: TODO
  */
-class ListViewHolder(view: View, private val clickListener: ForecastListAdapter.OnItemClickListener) :
+class ListViewHolder(view: View, private val itemClick: (Forecast) -> Unit) :
         RecyclerView.ViewHolder(view) {
     private val ivIcon: ImageView = view.find(R.id.iv_icon)
     private val tvDate: TextView = view.find(R.id.tv_date)
@@ -34,7 +34,7 @@ class ListViewHolder(view: View, private val clickListener: ForecastListAdapter.
             tvDescription.text = description
             tvMaxTemperature.text = "$high"
             tvMinTemperature.text = "$low"
-            itemView.setOnClickListener { clickListener(this@with) }
+            itemView.setOnClickListener { itemClick(this@with) }
         }
     }
 }
