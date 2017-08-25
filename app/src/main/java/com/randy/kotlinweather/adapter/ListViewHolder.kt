@@ -4,9 +4,9 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
 import com.randy.kotlinweather.R
 import com.randy.kotlinweather.domain.Forecast
+import com.randy.kotlinweather.engine.glide.GlideApp
 import org.jetbrains.anko.find
 
 /**
@@ -25,8 +25,10 @@ class ListViewHolder(view: View, private val clickListener: ForecastListAdapter.
 
     fun bindForecast(forecast: Forecast) {
         with(forecast) {
-            Glide.with(itemView)
+            GlideApp.with(itemView)
                     .load(iconUrl)
+                    .error(R.mipmap.ic_launcher)
+                    .placeholder(R.mipmap.ic_launcher)
                     .into(ivIcon)
             tvDate.text = date
             tvDescription.text = description
