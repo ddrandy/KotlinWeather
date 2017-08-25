@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <item name="tv_message" type="id"/>
-    <item name="rv_forecast_list" type="id"/>
-    <item name="iv_icon" type="id"/>
-    <item name="tv_description" type="id"/>
-    <item name="tv_date" type="id"/>
-    <item name="tv_max_temperature" type="id"/>
-    <item name="tv_min_temperature" type="id"/>
+    <item name="rvForecastList" type="id"/>
+    <item name="ivIcon" type="id"/>
+    <item name="tvDate" type="id"/>
+    <item name="tvDescription" type="id"/>
+    <item name="tvMaxTemperature" type="id"/>
+    <item name="tvMinTemperature" type="id"/>
 </resources>

@@ -2,12 +2,10 @@ package com.randy.kotlinweather.adapter
 
 import android.support.v7.widget.RecyclerView
 import android.view.View
-import android.widget.ImageView
-import android.widget.TextView
 import com.randy.kotlinweather.R
 import com.randy.kotlinweather.domain.Forecast
 import com.randy.kotlinweather.engine.glide.GlideApp
-import org.jetbrains.anko.find
+import kotlinx.android.synthetic.main.item_forecast.view.*
 
 /**
  * Author: randy(dddrandy@gmail.com)
@@ -17,11 +15,6 @@ import org.jetbrains.anko.find
  */
 class ListViewHolder(view: View, private val itemClick: (Forecast) -> Unit) :
         RecyclerView.ViewHolder(view) {
-    private val ivIcon: ImageView = view.find(R.id.iv_icon)
-    private val tvDate: TextView = view.find(R.id.tv_date)
-    private val tvDescription: TextView = view.find(R.id.tv_description)
-    private val tvMaxTemperature: TextView = view.find(R.id.tv_max_temperature)
-    private val tvMinTemperature: TextView = view.find(R.id.tv_min_temperature)
 
     fun bindForecast(forecast: Forecast) {
         with(forecast) {
@@ -29,11 +22,11 @@ class ListViewHolder(view: View, private val itemClick: (Forecast) -> Unit) :
                     .load(iconUrl)
                     .error(R.mipmap.ic_launcher)
                     .placeholder(R.mipmap.ic_launcher)
-                    .into(ivIcon)
-            tvDate.text = date
-            tvDescription.text = description
-            tvMaxTemperature.text = "$high"
-            tvMinTemperature.text = "$low"
+                    .into(itemView.ivIcon)
+            itemView.tvDate.text = date
+            itemView.tvDescription.text = description
+            itemView.tvMaxTemperature.text = "$high"
+            itemView.tvMinTemperature.text = "$low"
             itemView.setOnClickListener { itemClick(this@with) }
         }
     }

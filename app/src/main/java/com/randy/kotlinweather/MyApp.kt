@@ -1,6 +1,7 @@
 package com.randy.kotlinweather
 
 import android.app.Application
+import com.randy.kotlinweather.delegate.DelegatesExt
 import timber.log.Timber
 
 /**
@@ -10,8 +11,13 @@ import timber.log.Timber
  * Description: TODO
  */
 class MyApp : Application() {
+    companion object {
+        var instance: MyApp by DelegatesExt.notNullSingleValue()
+    }
+
     override fun onCreate() {
         super.onCreate()
+        instance = this
         Timber.plant(Timber.DebugTree())
     }
 }
