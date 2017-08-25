@@ -34,7 +34,7 @@ class ListViewHolder(view: View, private val clickListener: ForecastListAdapter.
             tvDescription.text = description
             tvMaxTemperature.text = "$high"
             tvMinTemperature.text = "$low"
-            itemView.setOnClickListener { clickListener }
+            itemView.setOnClickListener { clickListener(this@with) }
         }
     }
 }
